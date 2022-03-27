@@ -36,5 +36,8 @@ export class BufferFullError extends Error {
 export class BufferEmptyError extends Error {
   constructor() {
     throw new Error('Remove this statement and implement this function');
+export class NotValidBuffer extends Error {
+  constructor () {
+    throw new Error('Remove this statement and implement this function')
   }
 }
