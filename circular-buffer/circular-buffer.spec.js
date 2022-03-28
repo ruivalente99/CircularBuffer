@@ -54,4 +54,29 @@ describe('CircularBuffer', () => {
     buffer.write('1')
     expect(() => buffer.write('2')).toThrow(BufferFullError)
   })
+
+  /*
+   * Tests regarding force writing
+   */
+  test('force writing with full buffer should return the oldest value and the new value ', () => {
+    const buffer = new CircularBuffer(1)
+    buffer.write('2')
+    expect(buffer.forceWrite('1')).toStrictEqual(['2', '1'])
+  })
+
+  test('force writing with not full buffer should return the new value ', () => {
+    const buffer = new CircularBuffer(2)
+    buffer.write('2')
+    expect(buffer.forceWrite('1')).toStrictEqual('1')
+  })
+
+  /*
+   * Tests regarding clear
+   */
+  test('clear should delete the oldest value', () => {
+    const buffer = new CircularBuffer(1)
+    buffer.write('2')
+    expect(buffer.clear()).toBe('2')
+  })
+
 })
