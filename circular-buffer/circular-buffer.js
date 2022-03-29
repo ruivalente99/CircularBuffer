@@ -33,8 +33,25 @@ class CircularBuffer {
     return next
   }
 
-  read() {
-    throw new Error('Remove this statement and implement this function');
+  /**
+   * Writes the value on the next index of the buffer
+   * @params value -> value to change on the item
+   *
+   * Returns the same value
+   */
+  write (value) {
+    var result
+    if (this.isFull) throw new BufferFullError()
+    else {
+      this.memory[this.head] = value
+      if (this.head === this.memory.length - 1) {
+        this.isFull = true
+        console.log('Full')
+      }
+      result = this.memory[this.head]
+      this.head = this.next(this.head)
+    }
+    return result
   }
 
   forceWrite() {
