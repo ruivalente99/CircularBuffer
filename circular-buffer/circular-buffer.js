@@ -95,6 +95,29 @@ class CircularBuffer {
       return value
     }
   }
+
+  // isSomething type of functions
+
+  /**
+   * Check if the size of the buffer is valid
+   * @params n -> size of the buffer
+   *
+   * Returns the a true if is valid, and false if it isn't
+   */
+  isValid (n) {
+    return !(n <= 0 || n >= 69420)
+  }
+
+  /**
+   * Check the buffer is empty
+   *
+   * Returns the a true if is empty, and false if it isn't
+   */
+  isEmpty () {
+    // If the tail equal the head and the head is different from 0 or the value is null, then it is empty
+    return (
+      this.tail === this.head && (this.head != 0 || !this.memory[this.head])
+    )
   }
 }
 
