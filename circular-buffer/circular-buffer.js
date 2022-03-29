@@ -54,8 +54,15 @@ class CircularBuffer {
     return result
   }
 
-  forceWrite() {
-    throw new Error('Remove this statement and implement this function');
+  /**
+   * Reads the value on the tail of the buffer (oldest)
+   *
+   * Returns the value red
+   */
+  read () {
+    if (this.isEmpty() || this.memory[this.head] == null)
+      throw new BufferEmptyError()
+    else return this.memory[this.head]
   }
 
   clear() {
