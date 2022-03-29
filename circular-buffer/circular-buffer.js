@@ -121,19 +121,25 @@ class CircularBuffer {
   }
 }
 
-export default CircularBuffer;
+export default CircularBuffer
 
 export class BufferFullError extends Error {
-  constructor() {
-    throw new Error('Remove this statement and implement this function');
+  constructor (message) {
+    super(message)
+    this.name = 'BufferFullError'
   }
 }
 
 export class BufferEmptyError extends Error {
-  constructor() {
-    throw new Error('Remove this statement and implement this function');
+  constructor (message) {
+    super(message)
+    this.name = 'BufferEmptyError'
+  }
+}
+
 export class NotValidBuffer extends Error {
-  constructor () {
-    throw new Error('Remove this statement and implement this function')
+  constructor (message) {
+    super(message)
+    this.name = 'NotValidBuffer'
   }
 }
