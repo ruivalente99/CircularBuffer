@@ -65,8 +65,21 @@ class CircularBuffer {
     else return this.memory[this.head]
   }
 
-  clear() {
-    throw new Error('Remove this statement and implement this function');
+  /**
+   * Overwrites the value on the tail, oldest item on the buffer
+   * @params value -> value to change on the item
+   *
+   * Returns the full list after written or the value if the list wasn't full
+   */
+  forceWrite (value) {
+    if (this.isFull) {
+      this.memory[this.tail] = value
+      this.tail = this.next(this.tail)
+      return this.memory
+    } else {
+      return this.write(value)
+    }
+  }
   }
 }
 
