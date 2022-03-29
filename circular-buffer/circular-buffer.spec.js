@@ -4,9 +4,10 @@ import CircularBuffer, {
   NotValidBuffer
 } from './circular-buffer'
 
-// Just for safety
+// Just for safety, could be any value
 const MAX_VALUE = 69420
 
+// We could have more tests here, for example checking if the type of value is valid (only strings for example), but isn't the objetive of this challenge
 describe('CircularBuffer', () => {
   /*
    * Tests regarding size of the buffer
@@ -58,25 +59,26 @@ describe('CircularBuffer', () => {
   /*
    * Tests regarding force writing
    */
-  test('force writing with full buffer should return the oldest value and the new value ', () => {
-    const buffer = new CircularBuffer(1)
+  test('force writing with full buffer should return new buffer ', () => {
+    const buffer = new CircularBuffer(2)
     buffer.write('2')
-    expect(buffer.forceWrite('1')).toStrictEqual(['2', '1'])
+    buffer.write('3')
+    expect(buffer.forceWrite('1')).toStrictEqual(['1', '3'])
   })
 
   test('force writing with not full buffer should return the new value ', () => {
     const buffer = new CircularBuffer(2)
     buffer.write('2')
-    expect(buffer.forceWrite('1')).toStrictEqual('1')
+    expect(buffer.forceWrite('1')).toBe('1')
   })
 
   /*
    * Tests regarding clear
    */
   test('clear should delete the oldest value', () => {
-    const buffer = new CircularBuffer(1)
+    const buffer = new CircularBuffer(2)
     buffer.write('2')
+    buffer.write('1')
     expect(buffer.clear()).toBe('2')
   })
-
 })
