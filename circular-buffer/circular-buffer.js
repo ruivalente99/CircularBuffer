@@ -19,8 +19,18 @@ class CircularBuffer {
     }
   }
 
-  write() {
-    throw new Error('Remove this statement and implement this function');
+  /**
+   * Gets the next item on the buffer
+   * @params i -> index on the buffer
+   *
+   */
+  next (i) {
+    var next = i + 1
+    //If it is the last element, start from the bottom
+    if (next === this.memory.length) {
+      return 0
+    }
+    return next
   }
 
   read() {
