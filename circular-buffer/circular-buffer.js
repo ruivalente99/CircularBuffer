@@ -80,6 +80,21 @@ class CircularBuffer {
       return this.write(value)
     }
   }
+
+  /**
+   * Clears the value on the tail, oldest item on the buffer
+   *
+   * Returns the same value cleared, similar to .read but deletes this item ao the tail moves on
+   */
+  clear () {
+    if (this.isEmpty() && !this.isFull) throw new BufferEmptyError()
+    else {
+      const value = this.memory[this.tail]
+      this.memory[this.tail] == null
+      this.tail = this.next(this.tail)
+      return value
+    }
+  }
   }
 }
 
